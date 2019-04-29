@@ -2,6 +2,10 @@
 
 ## Overview
 
+|build|status|
+|:-------|:---|
+|travis CI|![](https://travis-ci.org/keisukeYamagishi/RxAlert.svg?branch=master)|
+
 We have made it easy to implement UIAlertController using RxSwift.
 
 ## Use it
