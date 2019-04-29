@@ -29,3 +29,7 @@ alert(title: "RxAlert",
                 
             }).disposed(by: disposeBag)
 ```
+
+[LICENCE](https://github.com/keisukeYamagishi/RxAlert/blob/master/LICENSE)
+
+Copyright (c) RxSwiftCommunity
