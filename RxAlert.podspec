@@ -15,10 +15,10 @@ Pod::Spec.new do |s|
                       Use UIAlertController with Rx.
                    DESC
 
-  s.homepage     = "https://github.com/keisukeYamagishi/RxAlert"
+  s.homepage     = "https://github.com/RxSwiftCommunity/RxAlert"
   s.license      = "MIT"
-  s.author             = { "keisuke" => "jam330157@gmail.com" }
-  s.source       = { :git => "https://github.com/keisukeYamagishi/RxAlert.git", :tag => "#{s.version}" }
+  s.author             = { ' RxSwift Community ' => ' community@rxswift.org ' }
+  s.source       = { :git => "https://github.com/RxSwiftCommunity/RxAlert.git", :tag => "#{s.version}" }
   s.ios.deployment_target = '11.0'
   s.swift_version = '4.2'
   s.source_files  = "RxAlert/*.swift"
