@@ -2,23 +2,48 @@
 
 ## Overview
 
+We have made it easy to implement UIAlertController using RxSwift.
+
+
 |build|status|
 |:-------|:---|
-|travis CI|![](https://travis-ci.org/keisukeYamagishi/RxAlert.svg?branch=master)|
+|travis CI|![](https://travis-ci.org/RxSwiftCommunity/RxAlert.svg?branch=master)|
 
-We have made it easy to implement UIAlertController using RxSwift.
+## Carthage
+
+Add following to Cartfile:
+
+```
+github "RxSwiftCommunity/RxAlert"
+```
+
+## Cocoapods
+
+[Cocoapods RxUIAlert](https://cocoapods.org/pods/RxUIAlert)
+
+edit Podfile:
+
+```
+vi $(PROJECT_ROOT)/Podfile
+```
+
+Add one line following 
+
+```
+pod 'RxUIAlert'
+```
 
 ## Use it
 
 ***Via SSH***: For those who plan on regularly making direct commits, cloning over SSH may provide a better experience (which requires uploading SSH keys to GitHub):
 
 ```
-$ git clone git remote add origin git@github.com:keisukeYamagishi/TabPageScrollViewController.git
+$ git clone git@github.com:RxSwiftCommunity/RxAlert.git
 ```
 ***Via https***: For those checking out sources as read-only, HTTPS works best:
 
 ```
-$ git clone https://github.com/keisukeYamagishi/TabPageScrollViewController.git
+$ git clone https://github.com/RxSwiftCommunity/RxAlert.git
 ```
 
 ## Sample code
@@ -34,6 +59,6 @@ alert(title: "RxAlert",
             }).disposed(by: disposeBag)
 ```
 
-[LICENCE](https://github.com/keisukeYamagishi/RxAlert/blob/master/LICENSE)
+[LICENCE](https://github.com/RxSwiftCommunity/RxAlert/blob/master/LICENSE)
 
 Copyright (c) RxSwiftCommunity
