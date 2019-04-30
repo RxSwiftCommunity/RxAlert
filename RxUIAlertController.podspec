@@ -7,9 +7,9 @@
 #
 
 Pod::Spec.new do |s|
-  s.name         = "RxAlertExtension"
+  s.name         = "RxUIAlertController"
   s.version      = "1.0.0"
-  s.summary      = "RxAlertExtension"
+  s.summary      = "RxUIAlertController"
   s.description  = <<-DESC
                       Extension UIAlertController with Rx.
                       Use UIAlertController with Rx.
