@@ -4,12 +4,21 @@ xcode_destination: platform=iOS Simulator,OS=12.0,name=iPhone X
 notifications:
   email:
     - jam330257@gmail.com
+env:
+  global:
+  - LC_CTYPE=en_US.UTF-8
+  - LANG=en_US.UTF-8
+  - WORKSPACE=RxAlertExample.xcworkspace
 
-# Ensure that fastlane is at the latest version
+matrix:
+- DESTINATION="OS=12.2,name=iPhone XS"       SCHEME="$IOS_FRAMEWORK_SCHEME" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
 before_install:
 - brew update
 - bundle install
 - bundle exec pod install --repo-update
+
+script:
+xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO build | xcpretty;
 
 jobs:
   include:
