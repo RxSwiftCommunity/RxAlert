@@ -18,20 +18,13 @@ default_platform(:ios)
 platform :ios do
   desc "Test pod lint and Build carthage"
   lane :test do
-    test_lib
     pod_lint
+    carthage_build
   end
 
   desc "Cocoapods lint the pod for all platforms"
   private_lane :pod_lint do
     pod_lib_lint(allow_warnings: true)
-  end
-
-  desc "Run the tests"
-  private_lane :test_lib do  
-    scan(workspace: "RxAlertExample.xcworkspace",
-         scheme: "RxAlertExample"
-        )
   end
 
   desc "Carthage Build"
