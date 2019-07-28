@@ -33,8 +33,8 @@ public struct AlertAction {
     public let style: UIAlertAction.Style
     
     public init(title: String,
-         type: Int,
-         style: UIAlertAction.Style) {
+         type: Int = 0,
+         style: UIAlertAction.Style = .default) {
         self.title = title
         self.type = type
         self.style = style

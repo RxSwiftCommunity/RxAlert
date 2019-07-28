@@ -37,8 +37,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.items.bind(to: self.tableView.rx.items(cellIdentifier: "Cell")) { i, item ,cell in
-            cell.textLabel!.text = item
+        self.items
+            .bind(to: self.tableView.rx.items(cellIdentifier: "Cell")) { i, item ,cell in
+                cell.textLabel!.text = item
         }.disposed(by: disposeBag)
         
         tableView
@@ -51,7 +52,7 @@ class ViewController: UIViewController {
                 case 0:
                     self?.alert(title: "RxAlert",
                                message: "RxAlert Message",
-                               actions: [AlertAction(title: "OK", type: 0, style: .default)],
+                               actions: [AlertAction(title: "OK")],
                                vc: self!).observeOn(MainScheduler.instance)
                         .subscribe(onNext: { index in
                             print ("index: \(index)")
@@ -62,7 +63,7 @@ class ViewController: UIViewController {
                     self?.alert(title: "RxAlert",
                                message: "RxAlert Message",
                                actions: [AlertAction(title: "OK", type: 0, style: .default),
-                                         AlertAction(title: "Cancel", type: 1, style: .cancel)],
+                                         AlertAction(title: "Cancel", type: 1, style: .destructive)],
                                vc: self!).observeOn(MainScheduler.instance)
                         .subscribe(onNext: { index in
                             print ("index: \(index)")
@@ -72,7 +73,7 @@ class ViewController: UIViewController {
                 case 2:
                     self!.alert(title: "RxAlert",
                                message: "RxAlert Message",
-                               actions: [AlertAction(title: "OK", type: 0, style: .default)],
+                               actions: [AlertAction(title: "OK")],
                                preferredStyle: .actionSheet,
                                vc: self!).observeOn(MainScheduler.instance)
                         .subscribe(onNext: { index in
@@ -85,7 +86,7 @@ class ViewController: UIViewController {
                                message: "RxAlert Message",
                                actions: [AlertAction(title: "OK", type: 0, style: .default),
                                          AlertAction(title: "First", type: 1, style: .default),
-                                         AlertAction(title: "Cancel", type: 2, style: .cancel)],
+                                         AlertAction(title: "Cancel", type: 2, style: .destructive)],
                                preferredStyle: .actionSheet,
                                vc: self!).observeOn(MainScheduler.instance)
                         .subscribe(onNext: { index in
@@ -96,20 +97,17 @@ class ViewController: UIViewController {
                 default:
                     break
                 }
-            
-        }).disposed(by: disposeBag)
-        
+        }).disposed(by: disposeBag)        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         alert(title: "RxAlert",
               message: "RxAlert Message",
-              actions: [AlertAction(title: "OK", type: 0, style: .default)],
+              actions: [AlertAction(title: "OK")],
               vc: self).observeOn(MainScheduler.instance)
             .subscribe(onNext: { index in
                 print ("index: \(index)")
-                
             }).disposed(by: disposeBag)
     }
 }
