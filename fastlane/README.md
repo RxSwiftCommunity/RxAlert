@@ -26,6 +26,11 @@ Test pod lint and Build carthage
 fastlane ios carthage_build
 ```
 Carthage Build
+### ios deploy_pod
+```
+fastlane ios deploy_pod
+```
+Deploy to cocoapods
 
 ----
 
