@@ -12,7 +12,6 @@
 		C7B28ED92275A1040045BF3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B28ED82275A1040045BF3D /* AppDelegate.swift */; };
 		C7B28EDB2275A1040045BF3D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B28EDA2275A1040045BF3D /* ViewController.swift */; };
 		C7B28EDE2275A1040045BF3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7B28EDC2275A1040045BF3D /* Main.storyboard */; };
-		C7B28EE02275A1060045BF3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7B28EDF2275A1060045BF3D /* Assets.xcassets */; };
 		C7B28EE32275A1060045BF3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7B28EE12275A1060045BF3D /* LaunchScreen.storyboard */; };
 		C7B28EF32275A11D0045BF3D /* RxAlert.h in Headers */ = {isa = PBXBuildFile; fileRef = C7B28EF12275A11D0045BF3D /* RxAlert.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C7B28EF62275A11D0045BF3D /* RxAlert.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B28EEF2275A11C0045BF3D /* RxAlert.framework */; };
@@ -67,7 +66,6 @@
 		C7B28ED82275A1040045BF3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7B28EDA2275A1040045BF3D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C7B28EDD2275A1040045BF3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C7B28EDF2275A1060045BF3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7B28EE22275A1060045BF3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7B28EE42275A1060045BF3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7B28EEF2275A11C0045BF3D /* RxAlert.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxAlert.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,7 +149,6 @@
 				C7B28ED82275A1040045BF3D /* AppDelegate.swift */,
 				C7B28EDA2275A1040045BF3D /* ViewController.swift */,
 				C7B28EDC2275A1040045BF3D /* Main.storyboard */,
-				C7B28EDF2275A1060045BF3D /* Assets.xcassets */,
 				C7B28EE12275A1060045BF3D /* LaunchScreen.storyboard */,
 				C7B28EE42275A1060045BF3D /* Info.plist */,
 			);
@@ -308,7 +305,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7B28EE32275A1060045BF3D /* LaunchScreen.storyboard in Resources */,
-				C7B28EE02275A1060045BF3D /* Assets.xcassets in Resources */,
 				C7B28EDE2275A1040045BF3D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
