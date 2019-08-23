@@ -32,7 +32,7 @@ platform :ios do
     carthage(
       command: "build",
       no_skip_current: true,
-      platform: "all"
+      platform: "ios"
     )
   end
   desc "Deploy to cocoapods"
