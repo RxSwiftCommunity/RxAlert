@@ -607,7 +607,6 @@
 			baseConfigurationReference = B54B6AC3CF08F4C978374F6A /* Pods-RxAlertExample.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D3DW67HS9F;
 				INFOPLIST_FILE = RxAlertExample/Info.plist;
@@ -628,7 +627,6 @@
 			baseConfigurationReference = A8BD3269D42BFF75D79E171A /* Pods-RxAlertExample.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D3DW67HS9F;
 				INFOPLIST_FILE = RxAlertExample/Info.plist;

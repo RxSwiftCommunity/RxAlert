@@ -31,10 +31,20 @@ platform :ios do
   lane :carthage_build do
     carthage(
       command: "build",
+      use_ssh: false,
+      use_submodules: false,
+      use_binaries: true,
+      no_build: false,
       no_skip_current: true,
-      platform: "ios"
+      verbose: false,
+      platform: "all",
+      configuration: "Release",
+      cache_builds: false,
+      new_resolver: false,
+      log_path: "carthage.log"
     )
   end
+
   desc "Deploy to cocoapods"
   lane :deploy_pod do
     pod_push
