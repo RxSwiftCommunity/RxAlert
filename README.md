@@ -59,6 +59,15 @@ $ git clone git@github.com:RxSwiftCommunity/RxAlert.git
 $ git clone https://github.com/RxSwiftCommunity/RxAlert.git
 ```
 
+## before start
+
+Execute the following command in the project root directory.
+
+```
+pod install
+```
+
+
 ## Sample code
 
 ```
