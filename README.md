@@ -59,6 +59,18 @@ $ git clone git@github.com:RxSwiftCommunity/RxAlert.git
 $ git clone https://github.com/RxSwiftCommunity/RxAlert.git
 ```
 
+
+## Before use it
+
+Execute the following CLI.
+
+If not, please [install it](https://cocoapods.org/).
+
+
+```
+$ pod install
+```
+
 ## Sample code
 
 ```
