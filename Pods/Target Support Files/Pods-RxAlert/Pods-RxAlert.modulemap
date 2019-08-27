@@ -1,6 +1,0 @@
-framework module Pods_RxAlert {
-  umbrella header "Pods-RxAlert-umbrella.h"
-
-  export *
-  module * { export * }
-}
