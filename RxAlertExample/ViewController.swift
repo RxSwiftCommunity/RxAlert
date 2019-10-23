@@ -103,7 +103,6 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         alert(title: "RxAlert",
-              message: "RxAlert Message",
               actions: [AlertAction(title: "OK")],
               vc: self).observeOn(MainScheduler.instance)
             .subscribe(onNext: { index in
