@@ -50,6 +50,7 @@ class ViewController: UIViewController {
             .asDriver()
             .drive(onNext: { [weak self] index in
                 guard let self = self else { return }
+                self.tableView.deselectRow(at: index, animated: true)
                 switch index.row {
                 case 0:
                     self.alert(title: "RxAlert",
