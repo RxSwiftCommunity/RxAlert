@@ -45,16 +45,16 @@ extension UIAlertController {
 // MARK: - UIViewController
 extension UIViewController {
     public func alert(title: String?,
-               message: String? = nil,
-               actions: [AlertAction],
-               preferredStyle:UIAlertController.Style = .alert,
-               vc:UIViewController) -> Observable<Int> {
-        
-        let actionSheet = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
-        
-        return actionSheet.addAction(actions: actions)
-            .do(onSubscribed: {
-                vc.present(actionSheet, animated: true, completion: nil)
-            })
+                      message: String? = nil,
+                      actions: [AlertAction],
+                      preferredStyle: UIAlertController.Style = .alert,
+                      vc: UIViewController) -> Observable<Int> {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
+        return
+            alertController
+                .addAction(actions: actions)
+                .do(onSubscribed: {
+                    vc.present(alertController, animated: true)
+                })
     }
 }
