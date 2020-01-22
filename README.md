@@ -17,19 +17,6 @@ Add following to Cartfile:
 github "RxSwiftCommunity/RxAlert"
 ```
 
-## carthage tutorial
-Add as below image.
-
-![](./doc/tutorial.png)
-
-If you do not do this, the following log will be output
-
-```bash
-Reason: image not found
-```
-App hung😱!
-
-
 ## Cocoapods
 
 [Cocoapods RxUIAlert](https://cocoapods.org/pods/RxUIAlert)

@@ -3,7 +3,7 @@ language: objective-c
 xcode_destination: platform=iOS Simulator,OS=12.0,name=iPhone X
 notifications:
   email:
-    - jam330257@gmail.com
+    - community@rxswift.org
 
 # Ensure that fastlane is at the latest version
 before_install:
