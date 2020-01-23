@@ -9,29 +9,6 @@ We have made it easy to implement UIAlertController using RxSwift.
 |:-------|:---|
 |travis CI|[![](https://travis-ci.org/RxSwiftCommunity/RxAlert.svg?branch=master)](https://travis-ci.org/RxSwiftCommunity/RxAlert)|
 
-## Carthage
-
-Add following to Cartfile:
-
-```
-github "RxSwiftCommunity/RxAlert"
-```
-
-## Cocoapods
-
-[Cocoapods RxUIAlert](https://cocoapods.org/pods/RxUIAlert)
-
-edit Podfile:
-
-```
-vi $(PROJECT_ROOT)/Podfile
-```
-
-Add one line following 
-
-```
-pod 'RxUIAlert'
-```
 
 ## Use it
 
@@ -46,16 +23,20 @@ $ git clone git@github.com:RxSwiftCommunity/RxAlert.git
 $ git clone https://github.com/RxSwiftCommunity/RxAlert.git
 ```
 
+## Carthage
 
-## Before use it
-
-Execute the following CLI.
-
-If not, please [install it](https://cocoapods.org/).
-
+Add following to Cartfile:
 
 ```
-$ pod install
+github "RxSwiftCommunity/RxAlert"
+```
+
+## Cocoapods
+
+[CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate RxAlert into your Xcode project using CocoaPods, add following line to the Podfile
+
+```
+pod 'RxUIAlert'
 ```
 
 ## Sample code
@@ -67,7 +48,6 @@ alert(title: "RxAlert",
               vc: self).observeOn(MainScheduler.instance)
             .subscribe(onNext: { index in
                 print ("index: \(index)")
-                
             }).disposed(by: disposeBag)
 ```
 
