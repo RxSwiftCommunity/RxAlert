@@ -28,21 +28,16 @@ import RxCocoa
 import UIKit
 // MARK: - UIAlertController
 extension UIAlertController {
-    
     public func addAction(actions: [AlertAction]) -> Observable<Int> {
         return Observable.create { [weak self] observer in
+            guard let self = self else { return Disposables.create() }
             actions.map { action in
-                return UIAlertAction(title: action.title, style: action.style) { _ in
+                UIAlertAction(title: action.title, style: action.style, handler: { _ in
                     observer.onNext(action.type)
                     observer.onCompleted()
-                }
-                }.forEach { action in
-                    self?.addAction(action)
-            }
-            
-            return Disposables.create {
-                self?.dismiss(animated: true, completion: nil)
-            }
+                })
+            }.forEach(self.addAction)
+            return Disposables.create { self.dismiss(animated: true) }
         }
     }
 }
@@ -50,16 +45,16 @@ extension UIAlertController {
 // MARK: - UIViewController
 extension UIViewController {
     public func alert(title: String?,
-               message: String? = nil,
-               actions: [AlertAction],
-               preferredStyle:UIAlertController.Style = .alert,
-               vc:UIViewController) -> Observable<Int> {
-        
-        let actionSheet = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
-        
-        return actionSheet.addAction(actions: actions)
-            .do(onSubscribed: {
-                vc.present(actionSheet, animated: true, completion: nil)
-            })
+                      message: String? = nil,
+                      actions: [AlertAction],
+                      preferredStyle: UIAlertController.Style = .alert,
+                      vc: UIViewController) -> Observable<Int> {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
+        return
+            alertController
+                .addAction(actions: actions)
+                .do(onSubscribed: {
+                    vc.present(alertController, animated: true)
+                })
     }
 }
