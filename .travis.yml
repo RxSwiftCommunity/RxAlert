@@ -9,7 +9,6 @@ notifications:
 before_install:
 - brew update
 - bundle install
-- bundle exec pod install
 
 jobs:
   include:
