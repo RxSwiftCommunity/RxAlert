@@ -105,16 +105,13 @@ class ViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
         alert(title: "RxAlert",
-              actions: [AlertAction(title: "OK")],
-              vc: self)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { index in
-                print("index: \(index)")
-            })
+              message: "We have made it easy to implement UIAlertController using RxSwift.")
+            .subscribe()
             .disposed(by: disposeBag)
     }
 }
