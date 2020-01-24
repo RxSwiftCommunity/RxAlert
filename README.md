@@ -43,12 +43,9 @@ pod 'RxUIAlert'
 
 ```
 alert(title: "RxAlert",
-              message: "RxAlert Message",
-              actions: [AlertAction(title: "OK", type: 0, style: .default)],
-              vc: self).observeOn(MainScheduler.instance)
-            .subscribe(onNext: { index in
-                print ("index: \(index)")
-            }).disposed(by: disposeBag)
+      message: "We have made it easy to implement UIAlertController using RxSwift.")
+      .subscribe()
+      .disposed(by: disposeBag)
 ```
 
 [LICENCE](https://github.com/RxSwiftCommunity/RxAlert/blob/master/LICENSE)

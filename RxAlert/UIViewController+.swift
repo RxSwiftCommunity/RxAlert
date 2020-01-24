@@ -29,8 +29,7 @@ import UIKit
 // MARK: - UIAlertController
 extension UIAlertController {
     public func addAction(actions: [AlertAction]) -> Observable<Int> {
-        return Observable.create { [weak self] observer in
-            guard let self = self else { return Disposables.create() }
+        return Observable.create { [unowned self] observer in
             actions.map { action in
                 UIAlertAction(title: action.title, style: action.style, handler: { _ in
                     observer.onNext(action.type)
@@ -46,15 +45,16 @@ extension UIAlertController {
 extension UIViewController {
     public func alert(title: String?,
                       message: String? = nil,
-                      actions: [AlertAction],
+                      actions: [AlertAction] = [AlertAction(title: "OK")],
                       preferredStyle: UIAlertController.Style = .alert,
-                      vc: UIViewController) -> Observable<Int> {
+                      vc: UIViewController? = nil) -> Observable<Int> {
+        let parentVc = vc ?? self
         let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         return
             alertController
                 .addAction(actions: actions)
                 .do(onSubscribed: {
-                    vc.present(alertController, animated: true)
+                    parentVc.present(alertController, animated: true)
                 })
     }
 }
