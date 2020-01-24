@@ -29,27 +29,26 @@ import RxSwift
 import RxCocoa
 
 class ViewController: UIViewController {
-    
+
     @IBOutlet weak var tableView: UITableView!
-    
+
     let items: BehaviorRelay<[String]> = BehaviorRelay(value: ["Alert single", "Alert double", "Action sheet single", "Action sheet triple"])
     let disposeBag = DisposeBag()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.items
             .bind(to: self.tableView.rx.items(cellIdentifier: "Cell"), curriedArgument: { i, item ,cell in
                 cell.textLabel?.text = item
             })
             .disposed(by: disposeBag)
-        
+
         self.tableView
             .rx
             .itemSelected
             .asDriver()
-            .drive(onNext: { [weak self] index in
-                guard let self = self else { return }
+            .drive(onNext: { [unowned self] index in
                 self.tableView.deselectRow(at: index, animated: true)
                 switch index.row {
                 case 0:
