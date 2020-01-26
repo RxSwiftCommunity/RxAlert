@@ -53,9 +53,7 @@ class ViewController: UIViewController {
                 switch index.row {
                 case 0:
                     self.alert(title: "RxAlert",
-                               message: "RxAlert Message",
-                               actions: [AlertAction(title: "OK")],
-                               vc: self)
+                               message: "RxAlert Message")
                         .observeOn(MainScheduler.instance)
                         .subscribe(onNext: { index in
                             print("index: \(index)")
@@ -66,8 +64,7 @@ class ViewController: UIViewController {
                     self.alert(title: "RxAlert",
                                message: "RxAlert Message",
                                actions: [AlertAction(title: "OK", type: 0, style: .default),
-                                         AlertAction(title: "Cancel", type: 1, style: .destructive)],
-                               vc: self)
+                                         AlertAction(title: "Cancel", type: 1, style: .destructive)])
                         .observeOn(MainScheduler.instance)
                         .subscribe(onNext: { index in
                             print("index: \(index)")
@@ -78,8 +75,7 @@ class ViewController: UIViewController {
                     self.alert(title: "RxAlert",
                                message: "RxAlert Message",
                                actions: [AlertAction(title: "OK")],
-                               preferredStyle: .actionSheet,
-                               vc: self)
+                               preferredStyle: .actionSheet)
                         .observeOn(MainScheduler.instance)
                         .subscribe(onNext: { index in
                             print("index: \(index)")
@@ -91,9 +87,9 @@ class ViewController: UIViewController {
                                message: "RxAlert Message",
                                actions: [AlertAction(title: "OK", type: 0, style: .default),
                                          AlertAction(title: "First", type: 1, style: .default),
-                                         AlertAction(title: "Cancel", type: 2, style: .destructive)],
-                               preferredStyle: .actionSheet,
-                               vc: self)
+                                         AlertAction(title: "Second", type: 1, style: .destructive),
+                                         AlertAction(title: "Cancel", type: 2, style: .cancel)],
+                               preferredStyle: .actionSheet)
                         .observeOn(MainScheduler.instance)
                         .subscribe(onNext: { index in
                             print("index: \(index)")
