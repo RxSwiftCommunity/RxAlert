@@ -29,7 +29,8 @@ import UIKit
 // MARK: - UIAlertController
 extension UIAlertController {
     public func addAction(actions: [AlertAction]) -> Observable<Int> {
-        return Observable.create { [unowned self] observer in
+        return Observable.create { [weak self] observer in
+            guard let self = self else { return Disposables.create() }
             actions.map { action in
                 UIAlertAction(title: action.title, style: action.style, handler: { _ in
                     observer.onNext(action.type)
