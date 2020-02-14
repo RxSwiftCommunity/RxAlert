@@ -38,13 +38,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.items
+        items
             .bind(to: self.tableView.rx.items(cellIdentifier: "Cell"), curriedArgument: { i, item ,cell in
                 cell.textLabel?.text = item
             })
             .disposed(by: disposeBag)
 
-        self.tableView
+        tableView
             .rx
             .itemSelected
             .asDriver()
