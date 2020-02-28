@@ -71,6 +71,7 @@ fileprivate extension UITextField {
     func config(_ textField: UITextField) {
         self.text = textField.text
         self.placeholder = textField.placeholder
+        self.tag = textField.tag
         self.isSecureTextEntry = textField.isSecureTextEntry
         self.tintColor = textField.tintColor
         self.textColor = textField.textColor
