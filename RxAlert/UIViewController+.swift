@@ -37,7 +37,7 @@ extension UIAlertController {
                         text.config(textField)
                     }
                 }else{
-                    self.addAction(UIAlertAction(title: action.title, style: action.style, handler: { _ in
+                    self.addAction(UIAlertAction(title: action.title, style: action.style, handler: {[unowned self] _ in
                         observer.on(.next((OutputAction(index: action.type, textFields: self.textFields))))
                         observer.on(.completed)
                     }))
