@@ -28,17 +28,17 @@ import RxCocoa
 import UIKit
 // MARK: - UIAlertController
 extension UIAlertController {
-    public func addAction(actions: [AlertAction], alert: UIAlertController) -> Observable<OutputAction> {
+    public func addAction(actions: [AlertAction]) -> Observable<OutputAction> {
         return Observable.create { [weak self] observer in
             guard let self = self else { return Disposables.create() }
             actions.forEach { action in
                 if let textField = action.textField {
-                    alert.addTextField { text in
+                    self.addTextField { text in
                         text.config(textField)
                     }
                 }else{
                     self.addAction(UIAlertAction(title: action.title, style: action.style, handler: { _ in
-                        observer.on(.next((OutputAction(index: action.type, textFields: alert.textFields))))
+                        observer.on(.next((OutputAction(index: action.type, textFields: self.textFields))))
                         observer.on(.completed)
                     }))
                 }
@@ -59,7 +59,7 @@ extension UIViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         return
             alertController
-                .addAction(actions: actions, alert: alertController)
+                .addAction(actions: actions)
                 .do(onSubscribed: {
                     parentVc.present(alertController, animated: true)
                 })
