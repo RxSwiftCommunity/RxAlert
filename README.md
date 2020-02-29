@@ -42,10 +42,34 @@ pod 'RxUIAlert'
 ## Sample code
 
 ```
+// normal alert
 alert(title: "RxAlert",
       message: "We have made it easy to implement UIAlertController using RxSwift.")
       .subscribe()
       .disposed(by: disposeBag)
+
+// textField
+alert(title: "RxAlert",
+              message: "We have made it easy to implement UIAlertController using RxSwift.",
+              actions: [AlertAction(title: "OK", type: 0, style: .default),
+                        AlertAction(textField: UITextField(), placeholder: "user name"),
+                        AlertAction(textField: UITextField(), placeholder: "password")])
+            .subscribe(onNext: { (output) in
+                output.textFields?.forEach {
+                    print ($0.text as? String?)
+                }
+            })
+            .disposed(by: disposeBag)
+
+// actionsheet
+alert(title: "RxAlert",
+              message: "RxAlert Message",
+              preferredStyle: .actionSheet)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { index in
+                print("index: \(index)")
+            }).disposed(by: disposeBag)
+
 ```
 
 [LICENCE](https://github.com/RxSwiftCommunity/RxAlert/blob/master/LICENSE)
