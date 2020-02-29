@@ -105,10 +105,39 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        let textField2 = UITextField()
+        textField2.textColor = .purple
+        textField2.clearButtonMode = .always
+        textField2.keyboardType = .emailAddress
+        textField2.returnKeyType = .google
+        textField2.spellCheckingType = .yes
+        textField2.autocapitalizationType = .none
+        textField2.keyboardAppearance = .dark
+        textField2.delegate = self
+        textField2.clearsOnBeginEditing = true
+        textField2.adjustsFontSizeToFitWidth = true
+        textField2.minimumFontSize = 10
+
         alert(title: "RxAlert",
-              message: "We have made it easy to implement UIAlertController using RxSwift.")
-            .subscribe()
+              message: "We have made it easy to implement UIAlertController using RxSwift.",
+              actions: [AlertAction(title: "OK", type: 0, style: .default),
+                        AlertAction(textField: UITextField(), placeholder: "user name"),
+                        AlertAction(textField: textField2, placeholder: "password")])
+            .subscribe(onNext: { (output) in
+                output.textFields?.forEach {
+                    print ($0.text as? String?)
+                }
+            })
             .disposed(by: disposeBag)
     }
 }
 
+extension ViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        print(string)
+            
+        return true
+    }
+}

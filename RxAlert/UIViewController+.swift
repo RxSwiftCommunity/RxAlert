@@ -28,15 +28,21 @@ import RxCocoa
 import UIKit
 // MARK: - UIAlertController
 extension UIAlertController {
-    public func addAction(actions: [AlertAction]) -> Observable<Int> {
+    public func addAction(actions: [AlertAction]) -> Observable<OutputAction> {
         return Observable.create { [weak self] observer in
             guard let self = self else { return Disposables.create() }
-            actions.map { action in
-                UIAlertAction(title: action.title, style: action.style, handler: { _ in
-                    observer.onNext(action.type)
-                    observer.onCompleted()
-                })
-            }.forEach(self.addAction)
+            actions.forEach { action in
+                if let textField = action.textField {
+                    self.addTextField { text in
+                        text.config(textField)
+                    }
+                }else{
+                    self.addAction(UIAlertAction(title: action.title, style: action.style, handler: {[unowned self] _ in
+                        observer.on(.next((OutputAction(index: action.type, textFields: self.textFields))))
+                        observer.on(.completed)
+                    }))
+                }
+            }
             return Disposables.create { self.dismiss(animated: true) }
         }
     }
@@ -48,7 +54,7 @@ extension UIViewController {
                       message: String? = nil,
                       actions: [AlertAction] = [AlertAction(title: "OK")],
                       preferredStyle: UIAlertController.Style = .alert,
-                      vc: UIViewController? = nil) -> Observable<Int> {
+                      vc: UIViewController? = nil) -> Observable<OutputAction> {
         let parentVc = vc ?? self
         let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         return
@@ -57,5 +63,54 @@ extension UIViewController {
                 .do(onSubscribed: {
                     parentVc.present(alertController, animated: true)
                 })
+    }
+}
+
+// MARK: - UITextField
+fileprivate extension UITextField {
+    func config(_ textField: UITextField) {
+        self.text = textField.text
+        self.placeholder = textField.placeholder
+        self.tag = textField.tag
+        self.isSecureTextEntry = textField.isSecureTextEntry
+        self.tintColor = textField.tintColor
+        self.textColor = textField.textColor
+        self.textAlignment = textField.textAlignment
+        self.borderStyle = textField.borderStyle
+        self.leftView = textField.leftView
+        self.leftViewMode = textField.leftViewMode
+        self.rightView = textField.rightView
+        self.rightViewMode = textField.rightViewMode
+        self.background = textField.background
+        self.disabledBackground = textField.disabledBackground
+        self.clearButtonMode = textField.clearButtonMode
+        self.inputView = textField.inputView
+        self.inputAccessoryView = textField.inputAccessoryView
+        self.clearsOnInsertion = textField.clearsOnInsertion
+        self.keyboardType = textField.keyboardType
+        self.returnKeyType = textField.returnKeyType
+        self.spellCheckingType = textField.spellCheckingType
+        self.autocapitalizationType = textField.autocapitalizationType
+        self.autocorrectionType = textField.autocorrectionType
+        self.keyboardAppearance = textField.keyboardAppearance
+        self.enablesReturnKeyAutomatically = textField.enablesReturnKeyAutomatically
+        self.delegate = textField.delegate
+        self.clearsOnBeginEditing = textField.clearsOnBeginEditing
+        self.adjustsFontSizeToFitWidth = textField.adjustsFontSizeToFitWidth
+        self.minimumFontSize = textField.minimumFontSize
+
+        if #available(iOS 11.0, *) {
+            self.textContentType = textField.textContentType
+        }
+        
+        if #available(iOS 11.0, *) {
+            self.smartQuotesType = textField.smartQuotesType
+            self.smartDashesType = textField.smartDashesType
+            self.smartInsertDeleteType = textField.smartInsertDeleteType
+        }
+
+        if #available(iOS 12.0, *) {
+            self.passwordRules = textField.passwordRules
+        }
     }
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		099A4FE991A5ACC9F9E19D96 /* Pods_RxAlert.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA055AF934F74AD52B7FB69 /* Pods_RxAlert.framework */; };
 		B7F309E8378CF814D631EA87 /* Pods_RxAlertExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF6C216A706F40107DB7F96 /* Pods_RxAlertExample.framework */; };
+		C76875E22407B2AE00B1E5DF /* OutputAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76875E12407B2AE00B1E5DF /* OutputAction.swift */; };
 		C76A9F9122773A2500E238F4 /* RxAlertExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A9F9022773A2500E238F4 /* RxAlertExampleTests.swift */; };
 		C7B28ED92275A1040045BF3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B28ED82275A1040045BF3D /* AppDelegate.swift */; };
 		C7B28EDB2275A1040045BF3D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B28EDA2275A1040045BF3D /* ViewController.swift */; };
@@ -59,6 +60,7 @@
 		A9D5F089214F8BD8265BE6B1 /* Pods-RxAlert.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxAlert.debug.xcconfig"; path = "Target Support Files/Pods-RxAlert/Pods-RxAlert.debug.xcconfig"; sourceTree = "<group>"; };
 		B27DCD3C29F4448D4DCA8624 /* Pods-RxAlert.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxAlert.release.xcconfig"; path = "Target Support Files/Pods-RxAlert/Pods-RxAlert.release.xcconfig"; sourceTree = "<group>"; };
 		BAA055AF934F74AD52B7FB69 /* Pods_RxAlert.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxAlert.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C76875E12407B2AE00B1E5DF /* OutputAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputAction.swift; sourceTree = "<group>"; };
 		C76A9F8E22773A2400E238F4 /* RxAlertExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RxAlertExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C76A9F9022773A2500E238F4 /* RxAlertExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxAlertExampleTests.swift; sourceTree = "<group>"; };
 		C76A9F9222773A2500E238F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				C7B28EF22275A11D0045BF3D /* Info.plist */,
 				C7B28EFC2275A12F0045BF3D /* AlertAction.swift */,
 				C7B28EFE2275A13D0045BF3D /* UIViewController+.swift */,
+				C76875E12407B2AE00B1E5DF /* OutputAction.swift */,
 			);
 			path = RxAlert;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7B28EFF2275A13D0045BF3D /* UIViewController+.swift in Sources */,
+				C76875E22407B2AE00B1E5DF /* OutputAction.swift in Sources */,
 				C7B28EFD2275A12F0045BF3D /* AlertAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
