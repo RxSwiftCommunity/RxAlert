@@ -38,12 +38,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        items
-            .bind(to: self.tableView.rx.items(cellIdentifier: "Cell"), curriedArgument: { i, item ,cell in
-                cell.textLabel?.text = item
-            })
-            .disposed(by: disposeBag)
-
         tableView
             .rx
             .itemSelected
@@ -105,6 +99,11 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+
+        /***************************************
+        Create an instance of password input item.
+        You can make various changes to UITextField of UIAlertViewController.
+         *****************************************/
         let textField2 = UITextField()
         textField2.textColor = .purple
         textField2.clearButtonMode = .always
@@ -113,10 +112,14 @@ class ViewController: UIViewController {
         textField2.spellCheckingType = .yes
         textField2.autocapitalizationType = .none
         textField2.keyboardAppearance = .dark
-        textField2.delegate = self
         textField2.clearsOnBeginEditing = true
         textField2.adjustsFontSizeToFitWidth = true
         textField2.minimumFontSize = 10
+        /***************************************
+         UITextFieldDelegate is enabled only for
+         the password input field of UITextField.
+         *****************************************/
+        textField2.delegate = self
 
         alert(title: "RxAlert",
               message: "We have made it easy to implement UIAlertController using RxSwift.",
@@ -124,9 +127,18 @@ class ViewController: UIViewController {
                         AlertAction(textField: UITextField(), placeholder: "user name"),
                         AlertAction(textField: textField2, placeholder: "password")])
             .subscribe(onNext: { (output) in
+                print("🤩The alert button has been tap.🤩")
                 output.textFields?.forEach {
-                    print ($0.text as? String?)
+                    if let text = $0.text {
+                        print(text)
+                    }
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        items
+            .bind(to: tableView.rx.items(cellIdentifier: "Cell"), curriedArgument: { i, item ,cell in
+                cell.textLabel?.text = item
             })
             .disposed(by: disposeBag)
     }
@@ -137,7 +149,6 @@ extension ViewController: UITextFieldDelegate {
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
         print(string)
-            
         return true
     }
 }
