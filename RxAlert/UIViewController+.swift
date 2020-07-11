@@ -62,6 +62,10 @@ extension UIViewController {
                 .addAction(actions: actions)
                 .do(onSubscribed: {
                     parentVc.present(alertController, animated: true)
+                    // TODO: Please delete follwoing code when it's fixed.
+                    alertController.view.subviews.forEach {
+                        $0.removeConstraints($0.constraints.filter {$0.description.contains("width == - 16")})
+                    }
                 })
     }
 }
