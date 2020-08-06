@@ -27,46 +27,46 @@ import RxSwift
 import RxCocoa
 import UIKit
 // MARK: - UIAlertController
-extension UIAlertController {
-    public func addAction(actions: [AlertAction]) -> Single<OutputAction> {
-        return Single.create { [weak self] observer in
-            guard let self = self else { return Disposables.create() }
+extension Reactive where Base: UIAlertController {
+    public func addActions(_ actions: [AlertAction]) -> Single<OutputAction> {
+        let alert: UIAlertController = self.base
+        
+        return Single.create { [weak alert] observer in
+            guard let alert = alert else { return Disposables.create() }
             actions.forEach { action in
                 if let textField = action.textField {
-                    self.addTextField { text in
+                    alert.addTextField { text in
                         text.config(textField)
                     }
                 } else {
-                    let action = UIAlertAction(title: action.title, style: action.style) { [unowned self] _ in
-                        observer(.success(OutputAction(index: action.type, textFields: self.textFields)))
+                    let action = UIAlertAction(title: action.title, style: action.style) { [unowned alert] _ in
+                        observer(.success(OutputAction(index: action.type, textFields: alert.textFields)))
                     }
-                    self.addAction(action)
+                    alert.addAction(action)
                 }
             }
-            return Disposables.create { self.dismiss(animated: true) }
+            return Disposables.create { alert.dismiss(animated: true) }
         }
     }
 }
 
 // MARK: - UIViewController
-extension UIViewController {
+extension Reactive where Base: UIViewController {
     public func alert(title: String?,
                       message: String? = nil,
                       actions: [AlertAction] = [AlertAction(title: "OK")],
                       preferredStyle: UIAlertController.Style = .alert,
                       vc: UIViewController? = nil) -> Single<OutputAction> {
-        let parentVc = vc ?? self
+        let parentVC = vc ?? self.base
         let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
-        return
-            alertController
-                .addAction(actions: actions)
-                .do(onSubscribed: {
-                    parentVc.present(alertController, animated: true)
-                    // TODO: Please delete follwoing code when it's fixed.
-                    alertController.view.subviews.forEach {
-                        $0.removeConstraints($0.constraints.filter {$0.description.contains("width == - 16")})
-                    }
-                })
+        return alertController.rx.addActions(actions)
+            .do(onSubscribe: {
+                parentVC.present(alertController, animated: true)
+                // TODO: Please delete follwoing code when it's fixed.
+                alertController.view.subviews.forEach {
+                    $0.removeConstraints($0.constraints.filter {$0.description.contains("width == - 16")})
+                }
+            })
     }
 }
 
