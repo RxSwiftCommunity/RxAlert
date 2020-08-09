@@ -11,4 +11,5 @@ import Foundation
 public struct OutputAction {
     public var index: Int
     public var textFields: [UITextField]?
+    public var alertAction: UIAlertAction
 }

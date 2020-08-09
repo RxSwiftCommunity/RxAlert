@@ -32,7 +32,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    let items: BehaviorRelay<[String]> = BehaviorRelay(value: ["Alert single", "Alert double", "Action sheet single", "Action sheet triple"])
+    let items: BehaviorRelay<[String]> = BehaviorRelay(value: ["Alert single", "Alert double", "Action sheet single", "Action sheet triple", "Alert UITextField"])
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -47,49 +47,58 @@ class ViewController: UIViewController {
                 switch index.row {
                 case 0:
                     self.rx.alert(title: "RxAlert",
-                               message: "RxAlert Message")
-                        .observeOn(MainScheduler.instance)
-                        .subscribe(onSuccess: { index in
+                                  message: "RxAlert Message")
+                        .subscribe(onNext: { index in
                             print("index: \(index)")
                         })
                         .disposed(by: self.disposeBag)
-                    break
                 case 1:
                     self.rx.alert(title: "RxAlert",
-                               message: "RxAlert Message",
-                               actions: [AlertAction(title: "OK", type: 0, style: .default),
-                                         AlertAction(title: "Cancel", type: 1, style: .destructive)])
-                        .observeOn(MainScheduler.instance)
-                        .subscribe(onSuccess: { index in
+                                  message: "RxAlert Message",
+                                  actions: [AlertAction(title: "OK", type: 0, style: .default),
+                                            AlertAction(title: "Cancel", type: 1, style: .destructive)])
+                        .subscribe(onNext: { index in
                             print("index: \(index)")
                         })
                         .disposed(by: self.disposeBag)
-                    break
                 case 2:
                     self.rx.alert(title: "RxAlert",
-                               message: "RxAlert Message",
-                               actions: [AlertAction(title: "OK")],
-                               preferredStyle: .actionSheet)
-                        .observeOn(MainScheduler.instance)
-                        .subscribe(onSuccess: { index in
+                                  message: "RxAlert Message",
+                                  actions: [AlertAction(title: "OK")],
+                                  preferredStyle: .actionSheet)
+                        .subscribe(onNext: { index in
                             print("index: \(index)")
                         })
                         .disposed(by: self.disposeBag)
-                    break
                 case 3:
                     self.rx.alert(title: "RxAlert",
-                               message: "RxAlert Message",
-                               actions: [AlertAction(title: "OK", type: 0, style: .default),
-                                         AlertAction(title: "First", type: 1, style: .default),
-                                         AlertAction(title: "Second", type: 1, style: .destructive),
-                                         AlertAction(title: "Cancel", type: 2, style: .cancel)],
-                               preferredStyle: .actionSheet)
-                        .observeOn(MainScheduler.instance)
-                        .subscribe(onSuccess: { index in
+                                  message: "RxAlert Message",
+                                  actions: [AlertAction(title: "OK", type: 0, style: .default),
+                                            AlertAction(title: "First", type: 1, style: .default),
+                                            AlertAction(title: "Second", type: 1, style: .destructive),
+                                            AlertAction(title: "Cancel", type: 2, style: .cancel)],
+                                  preferredStyle: .actionSheet)
+                        .subscribe(onNext: { index in
                             print("index: \(index)")
                         })
                         .disposed(by: self.disposeBag)
-                    break
+                case 4:
+                    let textField2 = UITextField()
+                    textField2.textColor = .black
+                    textField2.clearButtonMode = .always
+                    textField2.keyboardType = .twitter
+                    textField2.isSecureTextEntry = true
+                    self.rx.alert(title: "RxAlert UITextField",
+                                  message: "RxAlert UItextField MEssage",
+                                  actions: [AlertAction(title: "OK", type: 0, style: .default),
+                                            AlertAction(textField: UITextField(), placeholder: "user name"),
+                                            AlertAction(textField: textField2, placeholder: "password")])
+                        .subscribe(onNext: { (output) in
+                            output.textFields?.forEach {
+                                if let text = $0.text {
+                                    print(text)
+                                }
+                            }}).disposed(by: self.disposeBag)
                 default: break
                 }
             })
@@ -105,34 +114,32 @@ class ViewController: UIViewController {
         You can make various changes to UITextField of UIAlertViewController.
          *****************************************/
         let textField2 = UITextField()
-        textField2.textColor = .purple
+        textField2.textColor = .black
         textField2.clearButtonMode = .always
-        textField2.keyboardType = .emailAddress
+        textField2.keyboardType = .twitter
+        textField2.isSecureTextEntry = true
         textField2.returnKeyType = .google
-        textField2.spellCheckingType = .yes
-        textField2.autocapitalizationType = .none
         textField2.keyboardAppearance = .dark
         textField2.clearsOnBeginEditing = true
-        textField2.adjustsFontSizeToFitWidth = true
-        textField2.minimumFontSize = 10
         /***************************************
          UITextFieldDelegate is enabled only for
          the password input field of UITextField.
          *****************************************/
         textField2.delegate = self
 
-        self.rx.alert(title: "RxAlert",
+        rx.alert(title: "RxAlert",
               message: "We have made it easy to implement UIAlertController using RxSwift.",
               actions: [AlertAction(title: "OK", type: 0, style: .default),
                         AlertAction(textField: UITextField(), placeholder: "user name"),
                         AlertAction(textField: textField2, placeholder: "password")])
-            .subscribe(onSuccess: { (output) in
+            .subscribe(onNext: { (output) in
                 print("🤩The alert button has been tap.🤩")
                 output.textFields?.forEach {
                     if let text = $0.text {
                         print(text)
                     }
                 }
+                print("Action: \(output.alertAction)")
             })
             .disposed(by: disposeBag)
         
