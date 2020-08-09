@@ -46,38 +46,38 @@ class ViewController: UIViewController {
                 self.tableView.deselectRow(at: index, animated: true)
                 switch index.row {
                 case 0:
-                    self.alert(title: "RxAlert",
+                    self.rx.alert(title: "RxAlert",
                                message: "RxAlert Message")
                         .observeOn(MainScheduler.instance)
-                        .subscribe(onNext: { index in
+                        .subscribe(onSuccess: { index in
                             print("index: \(index)")
                         })
                         .disposed(by: self.disposeBag)
                     break
                 case 1:
-                    self.alert(title: "RxAlert",
+                    self.rx.alert(title: "RxAlert",
                                message: "RxAlert Message",
                                actions: [AlertAction(title: "OK", type: 0, style: .default),
                                          AlertAction(title: "Cancel", type: 1, style: .destructive)])
                         .observeOn(MainScheduler.instance)
-                        .subscribe(onNext: { index in
+                        .subscribe(onSuccess: { index in
                             print("index: \(index)")
                         })
                         .disposed(by: self.disposeBag)
                     break
                 case 2:
-                    self.alert(title: "RxAlert",
+                    self.rx.alert(title: "RxAlert",
                                message: "RxAlert Message",
                                actions: [AlertAction(title: "OK")],
                                preferredStyle: .actionSheet)
                         .observeOn(MainScheduler.instance)
-                        .subscribe(onNext: { index in
+                        .subscribe(onSuccess: { index in
                             print("index: \(index)")
                         })
                         .disposed(by: self.disposeBag)
                     break
                 case 3:
-                    self.alert(title: "RxAlert",
+                    self.rx.alert(title: "RxAlert",
                                message: "RxAlert Message",
                                actions: [AlertAction(title: "OK", type: 0, style: .default),
                                          AlertAction(title: "First", type: 1, style: .default),
@@ -85,7 +85,7 @@ class ViewController: UIViewController {
                                          AlertAction(title: "Cancel", type: 2, style: .cancel)],
                                preferredStyle: .actionSheet)
                         .observeOn(MainScheduler.instance)
-                        .subscribe(onNext: { index in
+                        .subscribe(onSuccess: { index in
                             print("index: \(index)")
                         })
                         .disposed(by: self.disposeBag)
@@ -121,12 +121,12 @@ class ViewController: UIViewController {
          *****************************************/
         textField2.delegate = self
 
-        alert(title: "RxAlert",
+        self.rx.alert(title: "RxAlert",
               message: "We have made it easy to implement UIAlertController using RxSwift.",
               actions: [AlertAction(title: "OK", type: 0, style: .default),
                         AlertAction(textField: UITextField(), placeholder: "user name"),
                         AlertAction(textField: textField2, placeholder: "password")])
-            .subscribe(onNext: { (output) in
+            .subscribe(onSuccess: { (output) in
                 print("🤩The alert button has been tap.🤩")
                 output.textFields?.forEach {
                     if let text = $0.text {
