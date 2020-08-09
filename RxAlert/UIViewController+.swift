@@ -25,13 +25,12 @@
 
 import RxSwift
 import RxCocoa
-import UIKit
+import UIKit.UIViewController
 // MARK: - UIAlertController
 extension Reactive where Base: UIAlertController {
-    public func addActions(_ actions: [AlertAction]) -> Single<OutputAction> {
-        let alert: UIAlertController = self.base
-        
-        return Single.create { [weak alert] observer in
+    public func addActions(_ actions: [AlertAction]) -> Observable<OutputAction> {
+        let alert = self.base
+        return Observable.create { [weak alert] observer in
             guard let alert = alert else { return Disposables.create() }
             actions.forEach { action in
                 if let textField = action.textField {
@@ -39,10 +38,12 @@ extension Reactive where Base: UIAlertController {
                         text.config(textField)
                     }
                 } else {
-                    let action = UIAlertAction(title: action.title, style: action.style) { [unowned alert] _ in
-                        observer(.success(OutputAction(index: action.type, textFields: alert.textFields)))
-                    }
-                    alert.addAction(action)
+                    alert.addAction(UIAlertAction(title: action.title, style: action.style, handler: { [unowned alert] alertAction in
+                        observer.on(.next(OutputAction(index: action.type,
+                                                       textFields: alert.textFields,
+                                                       alertAction: alertAction)))
+                        observer.on(.completed)
+                    }))
                 }
             }
             return Disposables.create { alert.dismiss(animated: true) }
@@ -56,7 +57,7 @@ extension Reactive where Base: UIViewController {
                       message: String? = nil,
                       actions: [AlertAction] = [AlertAction(title: "OK")],
                       preferredStyle: UIAlertController.Style = .alert,
-                      vc: UIViewController? = nil) -> Single<OutputAction> {
+                      vc: UIViewController? = nil) -> Observable<OutputAction> {
         let parentVC = vc ?? self.base
         let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         return alertController.rx.addActions(actions)
