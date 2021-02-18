@@ -9,6 +9,7 @@ notifications:
 before_install:
 - brew update
 - bundle install
+- pod install
 
 jobs:
   include:
