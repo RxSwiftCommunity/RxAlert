@@ -1,0 +1,31 @@
+name: build
+
+on: [push, pull_request]
+
+jobs:
+  run-test:
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        destination: [
+          'iOS Simulator,name=iPhone 8'
+        ]
+        swift-version: [5.0, 4.2, 4.0]
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/cache@v1
+        id: bundler-cache
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      - name: Bundle setup
+        run: brew update
+      - name: Bundle install
+        run: bundle install
+      - name: Run tests
+        env:
+          DESTINATION: platform=${{ matrix.destination }}
+          SWIFT_VERSION: ${{ matrix.swift-version }}
+        run: bundle exec fastlane test
