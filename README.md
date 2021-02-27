@@ -39,6 +39,15 @@ github "RxSwiftCommunity/RxAlert"
 pod 'RxUIAlert'
 ```
 
+## Usage
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+
+```
+pod install 
+```
+
 ## Sample code
 
 ```

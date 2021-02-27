@@ -39,7 +39,7 @@ playground.xcworkspace
 # Package.pins
 # Package.resolved
 .build/
-
+.DS_Store
 # CocoaPods
 #
 # We recommend against adding the Pods directory to your .gitignore. However
@@ -66,3 +66,4 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+Pods

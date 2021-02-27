@@ -1,18 +1,18 @@
 /*
  MIT License
- 
+
  Copyright (c) RxSwiftCommunity
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in all
  copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,29 +20,31 @@
  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
- 
+
  */
 
 import UIKit
 
 // MARK: - Action
+
 public struct AlertAction {
-    
     public let title: String
     public let type: Int
     public let textField: UITextField?
     public let style: UIAlertAction.Style
-    
+
     public init(title: String = "",
                 type: Int = 0,
                 textField: UITextField? = nil,
                 placeholder: String? = nil,
-                style: UIAlertAction.Style = .default) {
+                style: UIAlertAction.Style = .default)
+    {
         self.title = title
         self.type = type
         self.textField = textField
-        if self.textField != nil
-            && placeholder != nil {
+        if self.textField != nil,
+           placeholder != nil
+        {
             self.textField?.placeholder = placeholder
         }
         self.style = style
