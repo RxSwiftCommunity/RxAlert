@@ -60,10 +60,12 @@ public extension Reactive where Base: UIViewController {
                message: String? = nil,
                actions: [AlertAction] = [AlertAction(title: "OK")],
                preferredStyle: UIAlertController.Style = .alert,
-               vc: UIViewController? = nil) -> Observable<OutputAction>
+               vc: UIViewController? = nil,
+               tintColor: UIColor? = .black) -> Observable<OutputAction>
     {
         let parentVC = vc ?? base
         let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
+        alertController.view.tintColor = tintColor
         return alertController.rx.addActions(actions)
             .do(onSubscribe: {
                 parentVC.present(alertController, animated: true)
