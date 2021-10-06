@@ -61,7 +61,7 @@ public extension Reactive where Base: UIViewController {
                actions: [AlertAction] = [AlertAction(title: "OK")],
                preferredStyle: UIAlertController.Style = .alert,
                vc: UIViewController? = nil,
-               tintColor: UIColor? = .black) -> Observable<OutputAction>
+               tintColor: UIColor? = nil) -> Observable<OutputAction>
     {
         let parentVC = vc ?? base
         let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
