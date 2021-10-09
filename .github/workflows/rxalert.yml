@@ -12,6 +12,8 @@ jobs:
         ]
         swift-version: [5.0, 4.2, 4.0]
     steps:
+      - uses: actions/checkout@v1
+      - uses: actions/cache@v1
       - name: build config
         run:  make build_config
       - name: Run tests
