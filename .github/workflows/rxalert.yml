@@ -20,12 +20,8 @@ jobs:
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
-      - name: Bundle setup
-        run: brew update
-      - name: Bundle install
-        run: bundle install
       - name: Build configuration
-        run: pod install
+        run: make build_config
       - name: Run tests
         env:
           DESTINATION: platform=${{ matrix.destination }}
