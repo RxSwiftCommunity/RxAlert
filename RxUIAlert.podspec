@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "RxUIAlert"
-  s.version      = "1.5.0"
+  s.version      = "1.6.1"
   s.summary      = "RxUIAlert"
   s.description  = <<-DESC
                       Extension UIAlertController with Rx.
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.license      = "MIT"
   s.author             = { ' RxSwift Community ' => ' community@rxswift.org ' }
   s.source       = { :git => "https://github.com/RxSwiftCommunity/RxAlert.git", :tag => "#{s.version}" }
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '12.0'
   s.swift_version = '5.0'
   s.source_files  = "RxAlert/*.swift"
   s.frameworks = 'Foundation'
