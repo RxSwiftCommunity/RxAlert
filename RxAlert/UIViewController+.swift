@@ -61,19 +61,32 @@ public extension Reactive where Base: UIViewController {
                actions: [AlertAction] = [AlertAction(title: "OK")],
                preferredStyle: UIAlertController.Style = .alert,
                vc: UIViewController? = nil,
-               tintColor: UIColor? = nil) -> Observable<OutputAction>
+               tintColor: UIColor? = nil,
+               animated: Bool = true,
+               completion: (() -> Void)? = nil) -> Observable<OutputAction>
     {
-        let parentVC = vc ?? base
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
-        alertController.view.tintColor = tintColor
-        return alertController.rx.addActions(actions)
-            .do(onSubscribe: {
-                parentVC.present(alertController, animated: true)
-                // TODO: Please delete follwoing code when it's fixed.
-                alertController.view.subviews.forEach {
-                    $0.removeConstraints($0.constraints.filter { $0.description.contains("width == - 16") })
+        Observable.create { observer in
+            let alertController = UIAlertController(title: title,
+                                                    message: message,
+                                                    preferredStyle: preferredStyle)
+            alertController.view.tintColor = tintColor
+            actions.forEach { [weak alertController] action in
+                if let textField = action.textField {
+                    alertController?.addTextField { text in
+                        text.config(textField)
+                    }
+                } else {
+                    alertController?.addAction(UIAlertAction(title: action.title, style: action.style, handler: {[weak alertController] alertAction in
+                        observer.on(.next(OutputAction(index: action.type,
+                                                       textFields: alertController?.textFields,
+                                                       alertAction: alertAction)))
+                        observer.on(.completed)
+                    }))
                 }
-            })
+            }
+            base.present(alertController, animated: animated, completion: completion)
+            return Disposables.create()
+        }
     }
 }
 
