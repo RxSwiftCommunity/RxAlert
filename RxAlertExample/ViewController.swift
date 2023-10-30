@@ -149,7 +149,7 @@ extension ViewController: UITableViewDelegate {
             textField2.keyboardType = .twitter
             textField2.isSecureTextEntry = true
             rx.alert(title: "RxAlert UITextField",
-                     message: "RxAlert UItextField MEssage",
+                     message: "RxAlert UItextField Message",
                      actions: [AlertAction(title: "OK", type: 0, style: .default),
                                AlertAction(textField: UITextField(), placeholder: "user name"),
                                AlertAction(textField: textField2, placeholder: "password")])
