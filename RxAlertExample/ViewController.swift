@@ -22,7 +22,7 @@
  SOFTWARE.
 
  */
-
+import NSObject_Rx
 import RxAlert
 import RxCocoa
 import RxSwift
@@ -36,8 +36,6 @@ final class ViewController: UIViewController {
                  "Action sheet single",
                  "Action sheet triple",
                  "Alert UITextField"]
-
-    let disposeBag = DisposeBag()
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -74,7 +72,7 @@ final class ViewController: UIViewController {
                 }
                 print("Action: \(output.alertAction)")
             })
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
     }
 }
 
@@ -110,7 +108,7 @@ extension ViewController: UITableViewDelegate {
                 .subscribe(onNext: { index in
                     print("index: \(index)")
                 })
-                .disposed(by: disposeBag)
+                .disposed(by: rx.disposeBag)
         case 1:
             rx.alert(title: "RxAlert",
                      message: "RxAlert Message",
@@ -120,7 +118,7 @@ extension ViewController: UITableViewDelegate {
                 .subscribe(onNext: { index in
                     print("index: \(index)")
                 })
-                .disposed(by: disposeBag)
+                .disposed(by: rx.disposeBag)
         case 2:
             rx.alert(title: "RxAlert",
                      message: "RxAlert Message",
@@ -129,7 +127,7 @@ extension ViewController: UITableViewDelegate {
                 .subscribe(onNext: { index in
                     print("index: \(index)")
                 })
-                .disposed(by: disposeBag)
+                .disposed(by: rx.disposeBag)
         case 3:
             rx.alert(title: "RxAlert",
                      message: "RxAlert Message",
@@ -141,7 +139,7 @@ extension ViewController: UITableViewDelegate {
                 .subscribe(onNext: { index in
                     print("index: \(index)")
                 })
-                .disposed(by: disposeBag)
+                .disposed(by: rx.disposeBag)
         case 4:
             let textField2 = UITextField()
             textField2.textColor = .black
@@ -159,7 +157,7 @@ extension ViewController: UITableViewDelegate {
                             print(text)
                         }
                     }
-                }).disposed(by: disposeBag)
+                }).disposed(by: rx.disposeBag)
         default: break
         }
     }

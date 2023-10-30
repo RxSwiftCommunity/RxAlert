@@ -6,6 +6,7 @@ target 'RxAlert' do
   use_frameworks!
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'NSObject+Rx'
   # Pods for RxAlert
 end
 
