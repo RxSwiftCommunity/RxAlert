@@ -60,7 +60,6 @@ public extension Reactive where Base: UIViewController {
                message: String? = nil,
                actions: [AlertAction] = [AlertAction(title: "OK")],
                preferredStyle: UIAlertController.Style = .alert,
-               vc: UIViewController? = nil,
                tintColor: UIColor? = nil,
                animated: Bool = true,
                completion: (() -> Void)? = nil) -> Observable<OutputAction>
@@ -76,7 +75,7 @@ public extension Reactive where Base: UIViewController {
                         text.config(textField)
                     }
                 } else {
-                    alertController?.addAction(UIAlertAction(title: action.title, style: action.style, handler: {[weak alertController] alertAction in
+                    alertController?.addAction(UIAlertAction(title: action.title, style: action.style, handler: { [weak alertController] alertAction in
                         observer.on(.next(OutputAction(index: action.type,
                                                        textFields: alertController?.textFields,
                                                        alertAction: alertAction)))
