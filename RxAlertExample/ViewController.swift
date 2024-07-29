@@ -81,8 +81,7 @@ extension ViewController: UITextFieldDelegate {
                    shouldChangeCharactersIn _: NSRange,
                    replacementString string: String) -> Bool
     {
-        print(string)
-        return true
+        true
     }
 }
 
