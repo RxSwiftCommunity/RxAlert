@@ -132,8 +132,8 @@ extension ViewController: UITableViewDelegate {
                      message: "RxAlert Message",
                      actions: [AlertAction(title: "OK", type: 0, style: .default),
                                AlertAction(title: "First", type: 1, style: .default),
-                               AlertAction(title: "Second", type: 1, style: .destructive),
-                               AlertAction(title: "Cancel", type: 2, style: .cancel)],
+                               AlertAction(title: "Second", type: 2, style: .destructive),
+                               AlertAction(title: "Cancel", type: 3, style: .cancel)],
                      preferredStyle: .actionSheet)
                 .subscribe(onNext: { index in
                     print("index: \(index)")
