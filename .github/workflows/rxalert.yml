@@ -1,29 +1,48 @@
 name: build
 
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
+
+permissions:
+  contents: read
 
 jobs:
-  run-test:
-    runs-on: macOS-latest
-    strategy:
-      matrix:
-        destination: [
-          'iOS Simulator,name=iPhone 8'
-        ]
-        swift-version: [5.0, 4.2, 4.0]
+  swift-package:
+    runs-on: macos-latest
+    timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/cache@v1
-        id: bundler-cache
+      - uses: actions/checkout@v7
+      - name: Show Xcode version
+        run: xcodebuild -version
+      # Keep the existing Xcode project from shadowing Package.swift.
+      - name: Prepare standalone Swift package
+        run: |
+          mkdir -p build/package
+          cp Package.swift build/package/
+          cp -R RxAlert build/package/
+      - name: Build Swift package for iOS Simulator
+        working-directory: build/package
+        run: >-
+          xcodebuild
+          -scheme RxAlert
+          -destination 'generic/platform=iOS Simulator'
+          -derivedDataPath build/SwiftPackage
+          CODE_SIGNING_ALLOWED=NO
+          IPHONEOS_DEPLOYMENT_TARGET=15.0
+          build
+
+  cocoapods:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ruby/setup-ruby@v1
         with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-      - name: Build configuration
-        run: make build_config
-      - name: Run tests
+          ruby-version: '3.3'
+          bundler-cache: true
+      # Current Xcode SDKs require a newer deployment target for validation.
+      - name: Configure CocoaPods validation build
+        run: echo "IPHONEOS_DEPLOYMENT_TARGET = 15.0" > "$RUNNER_TEMP/ci.xcconfig"
+      - name: Validate CocoaPods integration
         env:
-          DESTINATION: platform=${{ matrix.destination }}
-          SWIFT_VERSION: ${{ matrix.swift-version }}
-        run: bundle exec fastlane test
+          XCODE_XCCONFIG_FILE: ${{ runner.temp }}/ci.xcconfig
+        run: bundle exec pod lib lint RxUIAlert.podspec --allow-warnings

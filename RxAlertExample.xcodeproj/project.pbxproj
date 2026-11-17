@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		317A13CA2FC2F59DAA998F5B /* Pods_RxAlert.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33CDBD2A7D7ABF14C77A8FE3 /* Pods_RxAlert.framework */; };
+		9064520530AC36F50083953D /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9064520430AC36F50083953D /* Package.swift */; };
 		B277D2003CB7AD77BA7844C4 /* Pods_RxAlertExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F85ED4290695ABD884D83D /* Pods_RxAlertExample.framework */; };
 		C76875E22407B2AE00B1E5DF /* OutputAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76875E12407B2AE00B1E5DF /* OutputAction.swift */; };
 		C76A9F9122773A2500E238F4 /* RxAlertExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A9F9022773A2500E238F4 /* RxAlertExampleTests.swift */; };
@@ -59,6 +60,7 @@
 		33CDBD2A7D7ABF14C77A8FE3 /* Pods_RxAlert.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxAlert.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EE4E1B0DD447EC784132DD3 /* Pods-RxAlert.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxAlert.release.xcconfig"; path = "Target Support Files/Pods-RxAlert/Pods-RxAlert.release.xcconfig"; sourceTree = "<group>"; };
 		77B7610282E2E8CAB1D10778 /* Pods-RxAlert.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxAlert.debug.xcconfig"; path = "Target Support Files/Pods-RxAlert/Pods-RxAlert.debug.xcconfig"; sourceTree = "<group>"; };
+		9064520430AC36F50083953D /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		AD10B50D9B6EE09C03F99F3F /* Pods-RxAlertExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxAlertExample.release.xcconfig"; path = "Target Support Files/Pods-RxAlertExample/Pods-RxAlertExample.release.xcconfig"; sourceTree = "<group>"; };
 		B2F85ED4290695ABD884D83D /* Pods_RxAlertExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxAlertExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C76875E12407B2AE00B1E5DF /* OutputAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputAction.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		C7B28ECC2275A1040045BF3D = {
 			isa = PBXGroup;
 			children = (
+				9064520430AC36F50083953D /* Package.swift */,
 				C7B28ED72275A1040045BF3D /* RxAlertExample */,
 				C7B28EF02275A11D0045BF3D /* RxAlert */,
 				C76A9F8F22773A2500E238F4 /* RxAlertExampleTests */,
@@ -356,9 +359,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-RxAlertExample/Pods-RxAlertExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-RxAlertExample/Pods-RxAlertExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -411,6 +418,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9064520530AC36F50083953D /* Package.swift in Sources */,
 				C7B28EFF2275A13D0045BF3D /* UIViewController+.swift in Sources */,
 				C76875E22407B2AE00B1E5DF /* OutputAction.swift in Sources */,
 				C7B28EFD2275A12F0045BF3D /* AlertAction.swift in Sources */,
